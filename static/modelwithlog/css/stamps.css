@@ -1,0 +1,21 @@
+/**
+ * Stamps.css 
+ * for displaying the stamps
+ */
+
+.object_stamps{
+    background-color: whitesmoke;
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    z-index: 5;
+}
+
+.object_stamps .stamp{
+    vertical-align:middle;
+}
+.object_stamps .stamp .stamp_date {
+    float:right;
+}
+.object_stamps .stamp .stamp_user .image_col{
+    vertical-align:middle;
+}

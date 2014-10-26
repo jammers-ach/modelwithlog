@@ -22,12 +22,12 @@ class ModelStamp(models.Model):
     )
 
     #Change messages
-    timestamp = models.DateField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
     stamp_type = models.IntegerField(choices=STAMP_TYPES)
     change_message = models.TextField()
 
     #Changed fields (if there was any)
-    
+
 
     class Meta:
         ordering=['-timestamp']
@@ -40,6 +40,7 @@ class ModelStamp(models.Model):
         stamp.user_objid = user.pk if user != None else -1
         stamp.stamp_type = stamp_type
         stamp.target_object = obj
+        stamp.change_message = log_message
         stamp.save()
 
 
@@ -53,7 +54,7 @@ class ModelWithLog(models.Model):
 
     class Meta:
         abstract = True
-    
+
     def log_change(self,user,log_message):
         '''logs that a change has taken place to this object'''
         self.log_stamp(user,log_message,2)
@@ -70,8 +71,8 @@ class ModelWithLog(models.Model):
         return ContentType.objects.get_for_model(self)
 
     def get_stamps(self):
-        return ModelStamps.objects.filter(target_content_type=self._get_content_type(),target_object_id=self.id,)
-        
+        return ModelStamp.objects.filter(target_content_type=self._get_content_type(),target_object_id=self.id,)
+
 
     def log_stamp(self,user,log_message,stamp_type):
         ModelStamp.create(stamp_type,user,log_message,self)
