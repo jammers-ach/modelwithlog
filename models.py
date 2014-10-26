@@ -3,6 +3,17 @@ from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 
+
+def make_list_of_changes(form):
+    '''Takes the changed fields in a form and tells you the proper name'''
+    updated_fields = []
+    for field_name, field in form.fields.items():
+        if field_name in form.changed_data:
+            updated_fields.append(field.label)
+
+    print updated_fields
+    return ",".join(updated_fields)
+
 class ModelStamp(models.Model):
 
     STAMP_TYPES=((1,'Addition'),
@@ -55,9 +66,13 @@ class ModelWithLog(models.Model):
     class Meta:
         abstract = True
 
-    def log_change(self,user,log_message):
+    def log_change(self,user,log_message,form=None):
         '''logs that a change has taken place to this object'''
-        self.log_stamp(user,log_message,2)
+
+        if(form == None):
+            self.log_stamp(user,log_message,2)
+        else:
+            self.log_stamp(user,log_message + ':' + make_list_of_changes(form) ,2)
 
     def log_creation(self,user,log_message):
         '''Lots that this object was created'''

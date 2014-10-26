@@ -12,9 +12,12 @@
 
 .object_stamps .stamp{
     vertical-align:middle;
+    position:relative;
 }
 .object_stamps .stamp .stamp_date {
-    float:right;
+top: 8px;
+position: absolute;
+right: 12px;
 }
 .object_stamps .stamp .stamp_user .image_col{
     vertical-align:middle;
