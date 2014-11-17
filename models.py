@@ -8,7 +8,7 @@ def make_list_of_changes(form):
     '''Takes the changed fields in a form and tells you the proper name'''
     updated_fields = []
     for field_name, field in form.fields.items():
-        if field_name in form.changed_data:
+        if field_name in form.changed_data and field.label != None:
             updated_fields.append(field.label)
 
     print updated_fields
