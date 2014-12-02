@@ -1,6 +1,6 @@
 <div class="object_stamps">
     {%for stamp in object.get_stamps%}
-        <div class="stamp">
+    <div class="stamp {%cycle 'odd' 'even'%}">
             <span class="stamp_user">{{stamp.user.avatar.small_c}}</span>
             <span class="stamp_text">{{stamp.change_message}}</span>
             <span class="stamp_date">{{stamp.timestamp |date:'d/m/y H:i'}}</span>
