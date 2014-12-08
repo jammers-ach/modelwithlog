@@ -1,5 +1,5 @@
 from django import template
-from jdjangoextensions.time_functions import pretty_date, pretty_date_short
+from modelwithlog.time_functions import pretty_date, pretty_date_short
 import datetime
 
 
