@@ -24,4 +24,4 @@ def hours(value):
     '''Turns minutes into hours and minutes'''
     h = int(value/60)
     m = value%60
-    return '%dh %dm' % (h,m) 
+    return '%dh %dm' % (h,m)
