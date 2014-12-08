@@ -1,5 +1,5 @@
 from django import template
-from jdjangoextensions.time_functions import pretty_date, pretty_date_short
+from modelwithlog.time_functions import pretty_date, pretty_date_short
 import datetime
 
 
@@ -24,4 +24,4 @@ def hours(value):
     '''Turns minutes into hours and minutes'''
     h = int(value/60)
     m = value%60
-    return '%dh %dm' % (h,m) 
+    return '%dh %dm' % (h,m)
