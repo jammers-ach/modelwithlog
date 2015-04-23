@@ -91,3 +91,8 @@ class ModelWithLog(models.Model):
 
     def log_stamp(self,user,log_message,stamp_type):
         ModelStamp.create(stamp_type,user,log_message,self)
+
+
+    def safe_delete(self,user):
+        self.log_deletion(user,'deleted')
+        return self.delete()
