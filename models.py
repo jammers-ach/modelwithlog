@@ -23,7 +23,7 @@ class ModelStamp(models.Model):
 
     #User information
     user = models.ForeignKey(settings.AUTH_USER_MODEL,null=True,blank=True)
-    user_objid = models.PositiveIntegerField() #this can be blank, the other can't)
+    user_objid = models.IntegerField(blank=True,null=True) #this can be blank, the other can't)
 
     #Can't use foreignkeys to link to objects, so use an integer id and a content type id
     target_content_type = models.ForeignKey(ContentType)
@@ -48,7 +48,7 @@ class ModelStamp(models.Model):
 
         stamp = klass()
         stamp.user = user
-        stamp.user_objid = user.pk if user != None else -1
+        stamp.user_objid = user.pk if user != None else None
         stamp.stamp_type = stamp_type
         stamp.target_object = obj
         stamp.change_message = log_message
