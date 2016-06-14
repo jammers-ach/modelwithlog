@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 
@@ -28,7 +28,7 @@ class ModelStamp(models.Model):
     #Can't use foreignkeys to link to objects, so use an integer id and a content type id
     target_content_type = models.ForeignKey(ContentType)
     target_object_id = models.PositiveIntegerField()
-    target_object = generic.GenericForeignKey(
+    target_object = GenericForeignKey(
         'target_content_type', 'target_object_id'
     )
 
